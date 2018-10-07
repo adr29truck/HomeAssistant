@@ -15,7 +15,7 @@ resources:
     type: js
   - url: /local/lovelace-player.js
     type: js
-  - url: /local/lovelace-player-config.js
+  - url: /local/lovelace-player-config.js?4
     type: js
 
 # Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
@@ -25,7 +25,7 @@ background: radial-gradient(crimson, skyblue)
 # Exclude entities from "Unused entities" view
 # excluded_entities:
 #   - weblink.router
-
+########################################################################################################################################
 views:
   - icon: mdi:home-variant
     # View tab title.
@@ -79,7 +79,7 @@ views:
           max: 35
     - type: weather-forecast
       entity: weather.darksky
-######################################################################
+########################################################################################################################################
   - icon: mdi:settings
     id: settings
     title: settings
@@ -92,15 +92,34 @@ views:
         trackers:
         - sensor.custom_card_tracker
         - sensor.custom_component_tracker
-    - type: custom:alarm_control_panel-card
-      entity: alarm_control_panel.alarm
-      show_keypad: true
-      title: My Alarm
-      style: '--alarm-color-disarmed: var(--label-badge-blue);'
-      states:
-        - arm_home
-        - arm_away
-      labels:
-        ui.card.alarm_control_panel.code: Inserire un codice a 4 cifre
-        state.alarm_control_panel.arm_away: Away!!
+# NOT WORKING :TODO:
+    # - type: custom:alarm_control_panel-card
+    #   entity: alarm_control_panel.alarm
+    #   show_keypad: true
+    #   title: My Alarm
+    #   style: '--alarm-color-disarmed: var(--label-badge-blue);'
+    #   states:
+    #     - arm_home
+    #     - arm_away
+    #   labels:
+    #     ui.card.alarm_control_panel.code: Inserire un codice a 4 cifre
+    #     state.alarm_control_panel.arm_away: Away!!
+########################################################################################################################################
+  - icon: mdi:music
+    id: media
+    title: Multi Media
+    type: vertical-stack
+    cards:
+    - type: horizontal-stack
+      cards: 
+      - type: media-control
+        entity: media_player.lg_smart_tv
+      - type: media-control
+        entity: media_player.min_tv
+    - type: media-control
+      entity: media_player.my_lovelace_player
+
+    
+
+
           
