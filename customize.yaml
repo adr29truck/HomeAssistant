@@ -28,3 +28,7 @@ sensor.ip_webcam_sound:
   hidden: true
 sensor.ip_webcam_video_connections:
   hidden: true
+sensor.worxlandroidbattery:
+  icon: mdi:battery-50
+sensor.worxlandroidstate:
+  icon: mdi:robot-vacuum
