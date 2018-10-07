@@ -13,6 +13,10 @@ resources:
     type: js
   - url: /local/alarm_control_panel-card/alarm_control_panel-card.js
     type: js
+  - url: /local/lovelace-player.js
+    type: js
+  - url: /local/lovelace-player-config.js
+    type: js
 
 # Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
 background: radial-gradient(crimson, skyblue)
