@@ -1,0 +1,102 @@
+title: My Awesome Home
+# Include external resources
+resources:
+  - url: /local/my-custom-card.js
+    type: js
+  - url: /local/my-webfont.css
+    type: css
+  - url: /local/gauge-card/gauge-card.js
+    type: js
+  - url: /local/monster-card.js?v=1
+    type: js
+  - url: /local/tracker-card.js?v=0
+    type: js
+  - url: /local/alarm_control_panel-card/alarm_control_panel-card.js
+    type: js
+
+# Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
+background: radial-gradient(crimson, skyblue)
+#center / cover no-repeat url("/images/background.png") fixed
+
+# Exclude entities from "Unused entities" view
+# excluded_entities:
+#   - weblink.router
+
+views:
+  - icon: mdi:home-variant
+    # View tab title.
+    title: Home
+    # Optional unique id for direct access /lovelace/${id}
+    id: example
+    # Optional background (overwrites the global background).
+    background: radial-gradient(crimson, skyblue)
+    # Each view can have a different theme applied. Theme should be defined in the frontend.
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
+        # The filter card will filter entities for their state
+      - type: entity-filter
+        entities:
+          - device_tracker.paulus
+          - device_tracker.anne_there
+        state_filter:
+          - 'home'
+        card:
+          type: glance
+          title: People that are home
+
+        # The picture entity card will represent an entity with a picture
+      - type: picture-entity
+        image: https://www.home-assistant.io/images/default-social.png
+        entity: light.bed_light
+########################################################################################################################################
+    # Specify a tab icon if you want the view tab to be an icon.
+  - icon: mdi:home-assistant
+    id: status
+    # Title of the view. Will be used as the tooltip for tab icon
+    title: Second view
+    type: vertical-stack
+    cards:
+    - type: markdown
+      title: Information
+      content: >
+        The **Home Assistant** weather page.
+    - type: horizontal-stack
+      cards:
+        - type: custom:gauge-card
+          title: Temp YR
+          entity: sensor.yr_temperature
+          min: -15
+          max: 35
+        - type: custom:gauge-card
+          title: Temp Darksky
+          entity: sensor.darksky_temperature
+          min: -15
+          max: 35
+    - type: weather-forecast
+      entity: weather.darksky
+######################################################################
+  - icon: mdi:settings
+    id: settings
+    title: settings
+    type: vertical-stack
+    cards:
+    - type: horizontal-stack
+      cards: 
+      - type: custom:tracker-card
+        title:
+        trackers:
+        - sensor.custom_card_tracker
+        - sensor.custom_component_tracker
+    - type: custom:alarm_control_panel-card
+      entity: alarm_control_panel.alarm
+      show_keypad: true
+      title: My Alarm
+      style: '--alarm-color-disarmed: var(--label-badge-blue);'
+      states:
+        - arm_home
+        - arm_away
+      labels:
+        ui.card.alarm_control_panel.code: Inserire un codice a 4 cifre
+        state.alarm_control_panel.arm_away: Away!!
+          
