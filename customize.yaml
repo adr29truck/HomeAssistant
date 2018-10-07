@@ -8,3 +8,23 @@ device_tracker.4c57ca3c6aa8:
   icon: mdi:cellphone-iphone
 device_tracker.4c3275e272c9:
   icon: mdi:cellphone-iphone
+sensor.ip_webcam_audio_connections:
+  hidden: true
+sensor.ip_webcam_battery_level:
+  hidden: true
+sensor.ip_webcam_battery_temperature:
+  hidden: true
+sensor.ip_webcam_battery_voltage:
+  hidden: true
+sensor.ip_webcam_light_level:
+  hidden: true
+sensor.ip_webcam_motion:
+  hidden: true
+sensor.ip_webcam_pressure:
+  hidden: true
+sensor.ip_webcam_proximity:
+  hidden: true
+sensor.ip_webcam_sound:
+  hidden: true
+sensor.ip_webcam_video_connections:
+  hidden: true
