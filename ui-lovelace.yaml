@@ -55,7 +55,7 @@ views:
         entity: light.bed_light
 ########################################################################################################################################
     # Specify a tab icon if you want the view tab to be an icon.
-  - icon: mdi:home-assistant
+  - icon: mdi:weather-cloudy
     id: status
     # Title of the view. Will be used as the tooltip for tab icon
     title: Second view
@@ -80,31 +80,6 @@ views:
     - type: weather-forecast
       entity: weather.darksky
 ########################################################################################################################################
-  - icon: mdi:settings
-    id: settings
-    title: settings
-    type: vertical-stack
-    cards:
-    - type: horizontal-stack
-      cards: 
-      - type: custom:tracker-card
-        title:
-        trackers:
-        - sensor.custom_card_tracker
-        - sensor.custom_component_tracker
-# NOT WORKING :TODO:
-    # - type: custom:alarm_control_panel-card
-    #   entity: alarm_control_panel.alarm
-    #   show_keypad: true
-    #   title: My Alarm
-    #   style: '--alarm-color-disarmed: var(--label-badge-blue);'
-    #   states:
-    #     - arm_home
-    #     - arm_away
-    #   labels:
-    #     ui.card.alarm_control_panel.code: Inserire un codice a 4 cifre
-    #     state.alarm_control_panel.arm_away: Away!!
-########################################################################################################################################
   - icon: mdi:music
     id: media
     title: Multi Media
@@ -118,8 +93,54 @@ views:
         entity: media_player.min_tv
     - type: media-control
       entity: media_player.my_lovelace_player
-
-    
-
+########################################################################################################################################
+  - icon: mdi:robot-vacuum-variant
+    id: assistants
+    title: Assistants
+    type: vertical-stack
+    cards:
+    - type: horizontal-stack
+      cards: 
+      - type: glance
+        entities: 
+          - sensor.worxlandroidstate
+          -  sensor.worxlandroidbattery
+        column_width: calc(100% / 2)
+########################################################################################################################################
+  - icon: mdi:settings
+    id: settings
+    title: settings
+    type: vertical-stack
+    cards:
+    - type: horizontal-stack
+      cards: 
+      - type: custom:tracker-card
+        title:
+        trackers:
+        - sensor.custom_card_tracker
+        - sensor.custom_component_tracker
+    - type: entities
+      title: Settings
+      show_header_toggle: false
+      entities: 
+          - light.theater_lights
+          - type: divider
+          - automation.test_automation
+          - automation.notify_hass_on
+          - automation.notify_hass_off
+          - automation.update_available_notifications     
+# NOT WORKING TODO:
+    # - type: custom:alarm_control_panel-card
+    #   entity: alarm_control_panel.alarm
+    #   show_keypad: true
+    #   title: My Alarm
+    #   style: '--alarm-color-disarmed: var(--label-badge-blue);'
+    #   states:
+    #     - arm_home
+    #     - arm_away
+    #   labels:
+    #     ui.card.alarm_control_panel.code: Inserire un codice a 4 cifre
+    #     state.alarm_control_panel.arm_away: Away!!
+########################################################################################################################################
 
           
