@@ -99,6 +99,48 @@ views:
     - type: media-control
       entity: media_player.my_lovelace_player
 ########################################################################################################################################
+  - icon: mdi:bus
+    id: Commute
+    title: Commute
+    type: vertical-stack
+    cards:
+    - type: horizontal-stack
+      cards:
+      - type: glance
+        title: "                            Nästa Buss"
+        entities:
+        - sensor.mot_stan
+        - sensor.mot_torslanda
+        column_width: calc(100% / 2)
+    - type: horizontal-stack
+      cards:
+      - type: picture-entity
+        entity: camera.hjalmar_brantingsplatsen
+        camera_image: camera.hjalmar_brantingsplatsen
+        show_state: false
+
+      - type: picture-entity
+        entity: camera.mot_hjalmar
+        camera_image: camera.mot_hjalmar
+        show_state: false
+    - type: horizontal-stack
+      cards:
+      - type: picture-entity
+        entity: camera.gota_alvbron_fran_hisingen
+        camera_image: camera.gota_alvbron_fran_hisingen
+        show_state: false
+
+      - type: picture-entity
+        entity: camera.chalmers
+        camera_image: camera.chalmers
+        show_state: false      
+    - type: horizontal-stack
+      cards:
+      - type: picture-entity
+        entity: camera.nordstan_mot_gota_alvbron
+        camera_image: camera.nordstan_mot_gota_alvbron
+        show_state: false
+########################################################################################################################################
   - icon: mdi:robot-vacuum-variant
     id: assistants
     title: Assistants
@@ -109,7 +151,7 @@ views:
       - type: glance
         entities: 
           - sensor.worxlandroidstate
-          -  sensor.worxlandroidbattery
+          - sensor.worxlandroidbattery
         column_width: calc(100% / 2)
 ########################################################################################################################################
   - icon: mdi:settings
