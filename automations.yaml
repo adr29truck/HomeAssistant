@@ -39,3 +39,20 @@
       data:
         file_url: http://cdn.thegadgetflow.com/wp-content/uploads/2015/07/WORX-Landroid-Robotic-Lawn-Mower-01.jpg
     service: notify.pushbullet_notify
+- id: '1539353790986'
+  alias: Vacation mode enable
+  trigger:
+  - platform: time
+    seconds: /5
+  condition:
+  - condition: state
+    entity_id: input_select.presence
+    for:
+      hours: 24
+    #   seconds: 5
+    state: Away
+  action:
+  - data:
+      entity_id: input_select.presence
+      option: Vacation
+    service: input_select.select_option
