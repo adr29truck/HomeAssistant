@@ -335,3 +335,16 @@ telegram_bot:
     api_key: !secret telegram_api
     allowed_chat_ids:
       - !secret telegram_id
+##############################################################################
+alarm_control_panel:
+  - platform: manual
+    name: Home Alarm
+    code: !secret alarm_code
+    pending_time: 10
+    delay_time: 10
+    trigger_time: 4
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      pending_time: 0
+      delay_time: 0
