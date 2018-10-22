@@ -20,3 +20,4 @@ home-assistant_v2.db
 home-assistant.log
 webostv.conf
 .uuid
+.vscode/settings.json
