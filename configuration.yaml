@@ -305,6 +305,8 @@ weather:
     name: Darksky
     api_key: !secret darksky_key
     mode: daily
+  - platform: yweather
+    name: Yahoo weather forecast
 ################################################################################
 #notifications
 notify:
