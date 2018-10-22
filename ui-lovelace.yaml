@@ -47,6 +47,7 @@ views:
           - device_tracker.a85c2c45d66d
           - device_tracker.4c57ca3c6aa8
           - device_tracker.4c3275e272c9
+          - device_tracker.pers_iphone
 
         state_filter:
           - 'home'
@@ -66,10 +67,10 @@ views:
     title: Second view
     type: vertical-stack
     cards:
-    - type: markdown
-      title: Information
-      content: >
-        The **Home Assistant** weather page.
+    # - type: markdown
+    #   title: Information
+    #   content: >
+    #     The **Home Assistant** weather page.
     - type: horizontal-stack
       cards:
         - type: custom:gauge-card
@@ -82,8 +83,14 @@ views:
           entity: sensor.darksky_temperature
           min: -15
           max: 35
-    - type: weather-forecast
-      entity: weather.darksky
+    - type: horizontal-stack
+      cards:
+      - type: weather-forecast
+        entity: weather.darksky
+    - type: horizontal-stack
+      cards:
+      - type: weather-forecast
+        entity: weather.yahoo_weather_forecast
 ########################################################################################################################################
   - icon: mdi:music
     id: media
