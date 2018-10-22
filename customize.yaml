@@ -32,3 +32,5 @@ sensor.worxlandroidbattery:
   icon: mdi:battery-50
 sensor.worxlandroidstate:
   icon: mdi:robot-vacuum
+device_tracker.uppleva_ii:
+  icon: mdi:speaker-bluetooth
