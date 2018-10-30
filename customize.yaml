@@ -34,3 +34,11 @@ sensor.worxlandroidstate:
   icon: mdi:robot-vacuum
 device_tracker.uppleva_ii:
   icon: mdi:speaker-bluetooth
+device_tracker.3010e4c53637:
+  hidden: true
+device_tracker.88e87fd08983:
+  hidden: true
+device_tracker.routerasuscom:
+  hidden: true
+device_tracker.androide386190bf42b7784:
+  hidden: true
