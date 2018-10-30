@@ -142,7 +142,7 @@ input_select:
 #################################################################################
 device_tracker:
  - platform: nmap_tracker
-   hosts: 192.168.1.100-150
+   hosts: 192.168.1.0-250
    exclude:
      - 192.168.1.148
    interval_seconds: 60
@@ -153,7 +153,7 @@ device_tracker:
 #################################################################################
 #Webcam
 android_ip_webcam:
-  - host: 192.168.1.107
+  - host: 192.168.1.149
     port: 8080
     sensors:
       - audio_connections
