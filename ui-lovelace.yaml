@@ -56,9 +56,23 @@ views:
           title: People at home
 
         # The picture entity card will represent an entity with a picture
-      - type: picture-entity
-        image: https://www.home-assistant.io/images/default-social.png
-        entity: light.bed_light
+        # nice image https://www.home-assistant.io/images/default-social.png
+      - type: picture-elements
+        image: /local/images/lovelace_day state_base.jpg
+        elements:
+          - type: image
+            entity: input_select.house_mode
+            image: /local/images/lovelace_day state_base.jpg
+            state_image: 
+              "Morning": /local/images/lovelace_day_state_morning.png
+              "Night": /local/images/lovelace_day_state_night.png
+            state_filter:
+              "Night": opacity(95%)
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+
 ########################################################################################################################################
     # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:weather-cloudy
