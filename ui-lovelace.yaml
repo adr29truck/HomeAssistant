@@ -105,6 +105,10 @@ views:
       cards:
       - type: weather-forecast
         entity: weather.yahoo_weather_forecast
+    - type: horizontal-stack
+      cards:
+      - type: weather-forecast
+        entity: weather.smhi_home
 ########################################################################################################################################
   - icon: mdi:music
     id: media
@@ -132,7 +136,7 @@ views:
         entities:
         - sensor.mot_stan
         - sensor.mot_torslanda
-        column_width: calc(100% / 2)
+        columns: 2
     - type: horizontal-stack
       cards:
       - type: picture-entity
@@ -173,7 +177,7 @@ views:
         entities: 
           - sensor.worxlandroidstate
           - sensor.worxlandroidbattery
-        column_width: calc(100% / 2)
+        columns: 2
 ########################################################################################################################################
   - icon: mdi:settings
     id: settings
@@ -193,10 +197,8 @@ views:
       entities: 
           - light.theater_lights
           - type: divider
-          - automation.test_automation
-          - automation.notify_hass_on
-          - automation.notify_hass_off
-          - automation.update_available_notifications     
+          - group.all_automations
+
 # NOT WORKING TODO:
     # - type: custom:alarm_control_panel-card
     #   entity: alarm_control_panel.alarm
