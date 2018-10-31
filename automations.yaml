@@ -7,7 +7,7 @@
   action:
   - data:
       message: Home Assistant just started!
-    service: notify.pushbullet_notify
+    service: notify.telegram_notify
 - id: '1538408477552'
   alias: Notify hass off
   trigger:
@@ -17,7 +17,7 @@
   action:
   - data:
       message: Home Assistant just stopped working!
-    service: notify.pushbullet_notify
+    service: notify.telegram_notify
 - id: '1254561251235'
   alias: Update Available Notifications
   trigger:
@@ -26,7 +26,7 @@
   action:
   - data:
       message: A update for Home Assistant is available.
-    service: notify.pushbullet_notify
+    service: notify.telegram_notify
 - id: '1538417197012'
   alias: test automation
   trigger:
@@ -49,7 +49,6 @@
     entity_id: input_select.presence
     for:
       hours: 24
-    #   seconds: 5
     state: Away
   action:
   - data:
