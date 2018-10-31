@@ -149,6 +149,10 @@ device_tracker:
    consider_home: 600
  - platform: bluetooth_tracker
    interval_seconds: 50
+ - platform: asuswrt
+   host: 192.168.1.1
+   username: !secret routername
+   password: !secret routerpassword
 
 #################################################################################
 #Webcam
@@ -307,6 +311,8 @@ weather:
     mode: daily
   - platform: yweather
     name: Yahoo weather forecast
+
+smhi:
 ################################################################################
 #notifications
 notify:
