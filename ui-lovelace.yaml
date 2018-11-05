@@ -41,19 +41,19 @@ views:
         # The filter card will filter entities for their state
       - type: entity-filter
         entities:
-          - device_tracker.483c0c3bc48e
-          - device_tracker.polar_mobile_22972249
-          - device_tracker.ellas_iphone
-          - device_tracker.a85c2c45d66d
-          - device_tracker.4c57ca3c6aa8
-          - device_tracker.4c3275e272c9
-          - device_tracker.pers_iphone
+          - input_boolean.adrian_home
+          - input_boolean.ella_home
+          - input_boolean.pappa_home
+          - input_boolean.mamma_home
+          - input_boolean.guest
 
         state_filter:
-          - 'home'
+          - 'on'
+        
         card:
           type: glance
           title: People at home
+          show_state: false
 
         # The picture entity card will represent an entity with a picture
         # nice image https://www.home-assistant.io/images/default-social.png
@@ -195,7 +195,7 @@ views:
       title: Settings
       show_header_toggle: false
       entities: 
-          - light.theater_lights
+          - input_boolean.guest
           - type: divider
           - group.all_automations
 

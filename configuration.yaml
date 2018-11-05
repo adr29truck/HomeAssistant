@@ -70,17 +70,17 @@ tts:
 
 # Cloud settings
 cloud:
-  google_actions:
-    # filter:
-    #   exclude_domains:
-    #     - group
-    entity_config:
-          light.theater_lights:
-            name: Guests
-            aliases:
-            - Guest
-            - visitor
-            - Visitors
+  # google_actions:
+  #   # filter:
+  #   #   exclude_domains:
+  #   #     - group
+  #   entity_config:
+  #         light.theater_lights:
+  #           name: Guests
+  #           aliases:
+  #           - Guest
+  #           - visitor
+  #           - Visitors
 
 group: !include groups.yaml
 automation: !include automations.yaml
@@ -106,24 +106,16 @@ media_player:
   # Make the browser be the media player
   - platform: floorplan_speaker
     name: my_lovelace_player
-
 ###################################################################################
-#Counter people home
-counter:
-  poeople_home:
-    initial: 0
-    step: 1
-###################################################################################
-#guest toggler
-light:
-  - platform: template
-    lights:
-      theater_lights:
-        friendly_name: "Guests"
-        turn_on:
-          # service: script.1536948300132
-        turn_off:
-          # service: script.1536948324762
+# light:
+#   - platform: template
+#     lights:
+#       theater_lights:
+#         friendly_name: "Guests"
+#         turn_on:
+#           # service: script.1536948300132
+#         turn_off:
+#           # service: script.1536948324762
 #################################################################################
 input_select:
     house_mode:
@@ -139,6 +131,26 @@ input_select:
             - Home
             - Away
             - Vacation
+#################################################################################
+#Booleans
+input_boolean:
+  adrian_home:
+    name: Adrian status
+    initial: on
+  ella_home:
+    name: Ella status
+    initial: on
+  mamma_home:
+    name: Mamma status
+    initial: on
+  pappa_home:
+    name: Pappa status
+    initial: on
+  guest:
+    name: Guest status
+    initial: off
+  home_occupied:
+    name: Home occupied
 #################################################################################
 device_tracker:
  - platform: nmap_tracker
