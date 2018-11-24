@@ -348,7 +348,7 @@ panel_iframe:
  nodered:
    title: 'Node-Red'
    icon: 'mdi:shuffle-variant'
-   url: 'http://192.168.1.148:1880/'
+   url: 'http://192.168.1.200:1880/'
 ##############################################################################
 #A telegram bot using polling
 telegram_bot:
