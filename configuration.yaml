@@ -103,6 +103,7 @@ media_player:
   - platform: spotify
     client_id: !secret spotify_id
     client_secret: !secret spotify_secret
+  - platform: plex
   # Make the browser be the media player
   - platform: floorplan_speaker
     name: my_lovelace_player

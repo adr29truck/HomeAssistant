@@ -121,8 +121,16 @@ views:
         entity: media_player.lg_smart_tv
       - type: media-control
         entity: media_player.min_tv
-    - type: media-control
-      entity: media_player.my_lovelace_player
+    - type: horizontal-stack
+      cards:
+      - type: media-control
+        entity: media_player.my_lovelace_player
+      - type: media-control
+        entity: media_player.lg_oled55c7vz
+    - type: horizontal-stack
+      cards:
+      - type: media-control
+        entity: media_player.chrome
 ########################################################################################################################################
   - icon: mdi:bus
     id: Commute

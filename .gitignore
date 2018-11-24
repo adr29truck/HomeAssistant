@@ -23,3 +23,4 @@ webostv.conf
 .vscode/settings.json
 home-assistant_v2.db-shm
 home-assistant_v2.db-wal
+plex.conf
