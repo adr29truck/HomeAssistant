@@ -63,10 +63,12 @@ sun:
 
 # Text to speech
 tts:
-  - platform: google
-    cache: true
-    cache_dir: /tmp/tts
-    time_memory: 180
+  # - platform: google
+  #   cache: true
+  #   cache_dir: /tmp/tts
+  #   time_memory: 180
+  - platform: voicerss
+    api_key: !secret voicerss_api   
 
 # Cloud settings
 cloud:
@@ -367,3 +369,10 @@ alarm_control_panel:
     armed_home:
       pending_time: 0
       delay_time: 0
+##############################################################################
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
