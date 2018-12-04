@@ -31,7 +31,7 @@ views:
     # View tab title.
     title: Home
     # Optional unique id for direct access /lovelace/${id}
-    id: example
+    id: home
     # Optional background (overwrites the global background).
     background: radial-gradient(crimson, skyblue)
     # Each view can have a different theme applied. Theme should be defined in the frontend.
@@ -39,7 +39,8 @@ views:
     # The cards to show on this view.
     cards:
         # The filter card will filter entities for their state
-      - type: entity-filter
+      - id: 2bcb114565d14bdfa7046155ca94c83a  # Automatically created id
+        type: entity-filter
         entities:
           - input_boolean.adrian_home
           - input_boolean.ella_home
@@ -49,7 +50,6 @@ views:
 
         state_filter:
           - 'on'
-        
         card:
           type: glance
           title: People at home
@@ -57,13 +57,14 @@ views:
 
         # The picture entity card will represent an entity with a picture
         # nice image https://www.home-assistant.io/images/default-social.png
-      - type: picture-elements
+      - id: 1ce3729d67ed4f9482be95766fcb40a6  # Automatically created id
+        type: picture-elements
         image: /local/images/lovelace_day state_base.jpg
         elements:
           - type: image
             entity: input_select.house_mode
             image: /local/images/lovelace_day state_base.jpg
-            state_image: 
+            state_image:
               "Morning": /local/images/lovelace_day_state_morning.png
               "Night": /local/images/lovelace_day_state_night.png
             state_filter:
@@ -78,131 +79,145 @@ views:
   - icon: mdi:weather-cloudy
     id: status
     # Title of the view. Will be used as the tooltip for tab icon
-    title: Second view
+    title: Weather
     type: vertical-stack
     cards:
     # - type: markdown
     #   title: Information
     #   content: >
     #     The **Home Assistant** weather page.
-    - type: horizontal-stack
-      cards:
-        - type: custom:gauge-card
-          title: Temp YR
-          entity: sensor.yr_temperature
-          min: -15
-          max: 35
-        - type: custom:gauge-card
-          title: Temp Darksky
-          entity: sensor.darksky_temperature
-          min: -15
-          max: 35
-    - type: horizontal-stack
-      cards:
-      - type: weather-forecast
-        entity: weather.darksky
-    - type: horizontal-stack
-      cards:
-      - type: weather-forecast
-        entity: weather.yahoo_weather_forecast
-    - type: horizontal-stack
-      cards:
-      - type: weather-forecast
-        entity: weather.smhi_home
+      - id: 112254f5b5a64d16a62bde05cd30b5ff  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: custom:gauge-card
+            title: Temp YR
+            entity: sensor.yr_temperature
+            min: -15
+            max: 35
+          - type: custom:gauge-card
+            title: Temp Darksky
+            entity: sensor.darksky_temperature
+            min: -15
+            max: 35
+      - id: 8a90979288734b70b0c426e12315b7f7  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: weather-forecast
+            entity: weather.darksky
+      - id: fa3d9fa2bb6041878232c3cc291b223d  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: weather-forecast
+            entity: weather.yahoo_weather_forecast
+      - id: 826824be83754eb7922bf2df57782a96  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: weather-forecast
+            entity: weather.smhi_home
 ########################################################################################################################################
   - icon: mdi:music
     id: media
     title: Multi Media
     type: vertical-stack
     cards:
-    - type: horizontal-stack
-      cards: 
-      - type: media-control
-        entity: media_player.lg_smart_tv
-      - type: media-control
-        entity: media_player.min_tv
-    - type: horizontal-stack
-      cards:
-      - type: media-control
-        entity: media_player.my_lovelace_player
-      - type: media-control
-        entity: media_player.lg_oled55c7vz
-    - type: horizontal-stack
-      cards:
-      - type: media-control
-        entity: media_player.chrome
+      - id: 42ebabb7d68a41a4b6018ae5bf053701  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: media-control
+            entity: media_player.lg_smart_tv
+          - type: media-control
+            entity: media_player.min_tv
+      - id: aa1f2a8b6f274af2b0101750b6b2391a  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: media-control
+            entity: media_player.my_lovelace_player
+          - type: media-control
+            entity: media_player.lg_oled55c7vz
+      - id: 8aeb3bf7fd5f4d128829bf031a513c14  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: media-control
+            entity: media_player.chrome
 ########################################################################################################################################
   - icon: mdi:bus
-    id: Commute
+    id: commute
     title: Commute
     type: vertical-stack
     cards:
-    - type: horizontal-stack
-      cards:
-      - type: glance
-        title: "                            Nästa Buss"
-        entities:
-        - sensor.mot_stan
-        - sensor.mot_torslanda
-        columns: 2
-    - type: horizontal-stack
-      cards:
-      - type: picture-entity
-        entity: camera.hjalmar_brantingsplatsen
-        camera_image: camera.hjalmar_brantingsplatsen
-        show_state: false
+      - id: d2a77555fd6944ababdf4780ede74c69  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: glance
+            title: "                            Nästa Buss"
+            entities:
+              - sensor.mot_stan
+              - sensor.mot_torslanda
+            columns: 2
+      - id: 49e6ad58317e44f88e6ee07b873ec08d  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: picture-entity
+            entity: camera.hjalmar_brantingsplatsen
+            camera_image: camera.hjalmar_brantingsplatsen
+            show_state: false
 
-      - type: picture-entity
-        entity: camera.mot_hjalmar
-        camera_image: camera.mot_hjalmar
-        show_state: false
-    - type: horizontal-stack
-      cards:
-      - type: picture-entity
-        entity: camera.gota_alvbron_fran_hisingen
-        camera_image: camera.gota_alvbron_fran_hisingen
-        show_state: false
+          - type: picture-entity
+            entity: camera.mot_hjalmar
+            camera_image: camera.mot_hjalmar
+            show_state: false
+      - id: 4cc67686842b424a9787ca656b42ba9b  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: picture-entity
+            entity: camera.gota_alvbron_fran_hisingen
+            camera_image: camera.gota_alvbron_fran_hisingen
+            show_state: false
 
-      - type: picture-entity
-        entity: camera.chalmers
-        camera_image: camera.chalmers
-        show_state: false      
-    - type: horizontal-stack
-      cards:
-      - type: picture-entity
-        entity: camera.nordstan_mot_gota_alvbron
-        camera_image: camera.nordstan_mot_gota_alvbron
-        show_state: false
+          - type: picture-entity
+            entity: camera.chalmers
+            camera_image: camera.chalmers
+            show_state: false
+      - id: 5d467f7776b043fc94cf8fc4d655281b  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: picture-entity
+            entity: camera.nordstan_mot_gota_alvbron
+            camera_image: camera.nordstan_mot_gota_alvbron
+            show_state: false
 ########################################################################################################################################
   - icon: mdi:robot-vacuum-variant
     id: assistants
     title: Assistants
     type: vertical-stack
     cards:
-    - type: horizontal-stack
-      cards: 
-      - type: glance
-        entities: 
-          - sensor.worxlandroidstate
-          - sensor.worxlandroidbattery
-        columns: 2
+      - id: 9245cb5f890f473eab1efa3c359ab799  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: glance
+            entities:
+              - sensor.worxlandroidstate
+              - sensor.worxlandroidbattery
+            columns: 2
 ########################################################################################################################################
   - icon: mdi:settings
     id: settings
-    title: settings
+    title: Settings
     type: vertical-stack
     cards:
-    - type: horizontal-stack
-      cards: 
-      - type: custom:tracker-card
-        title:
-        trackers:
-        - sensor.custom_card_tracker
-        - sensor.custom_component_tracker
-    - type: entities
-      title: Settings
-      show_header_toggle: false
-      entities: 
+      - id: 3b3936fd75254bddaddd8a6f6fe3e615  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: custom:tracker-card
+            title:
+            trackers:
+              - sensor.custom_card_tracker
+              - sensor.custom_component_tracker
+      - id: ef0e127ba990408db4fca9f574f14d6c  # Automatically created id
+        type: entities
+        title: Settings
+        show_header_toggle: false
+        entities:
           - input_boolean.guest
           - type: divider
           - group.all_automations
@@ -221,4 +236,3 @@ views:
     #     state.alarm_control_panel.arm_away: Away!!
 ########################################################################################################################################
 
-          

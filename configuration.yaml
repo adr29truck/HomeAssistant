@@ -1,4 +1,7 @@
 homeassistant:
+  # This is the legacy auth method. Need to change when NodeRed supports new auth system.
+  auth_providers:
+  - type: legacy_api_password
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
@@ -37,6 +40,36 @@ discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
+
+recorder:
+  exclude:
+    domains:
+    - automation
+    - updater
+    - camera
+    - device_tracker
+    entities:
+    - sensor.worldclock_sensor
+    - sensor.mot_stan
+    - sensor.mot_torslanda
+    - sensor.season
+    - sun.sun
+    - sensor.waze_travel_time
+    - sensor.yr_fog
+    - sensor.yr_high_clouds
+    - sensor.yr_low_clouds
+    - sensor.yr_medium_clouds
+    - sensor.yr_symbol
+    - switch.ip_webcam_exposure_lock
+    - switch.ip_webcam_focus
+    - switch.ip_webcam_frontfacing_camera
+    - switch.ip_webcam_gps_active
+    - switch.ip_webcam_night_vision
+    - switch.ip_webcam_overlay
+    - switch.ip_webcam_torch
+    - switch.ip_webcam_video_recording
+    - switch.ip_webcam_white_balance_lock
+    - persistent_notification.httplogin
 
 # Enables support for tracking state changes over time
 history:
@@ -164,11 +197,10 @@ device_tracker:
    consider_home: 600
  - platform: bluetooth_tracker
    interval_seconds: 50
- - platform: asuswrt
-   host: 192.168.1.1
-   username: !secret routername
-   password: !secret routerpassword
-
+asuswrt:
+  host: 192.168.1.1
+  username: !secret routername
+  password: !secret routerpassword
 #################################################################################
 #Webcam
 android_ip_webcam:
@@ -348,7 +380,7 @@ panel_iframe:
  nodered:
    title: 'Node-Red'
    icon: 'mdi:shuffle-variant'
-   url: 'http://192.168.1.200:1880/'
+   url: 'http://192.168.1.148:1880/'
 ##############################################################################
 #A telegram bot using polling
 telegram_bot:
