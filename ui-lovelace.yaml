@@ -139,6 +139,10 @@ views:
         cards:
           - type: media-control
             entity: media_player.chrome
+          - type: entities
+            entities:
+              - sensor.lastfm_adr29truck
+
 ########################################################################################################################################
   - icon: mdi:bus
     id: commute
