@@ -350,6 +350,20 @@ sensor:
     origin: !secret home_addres
     destination: !secret school_addres
     region: 'EU'
+
+#Trafikverket data
+  - platform: trafikverket_weatherstation
+    name: Trafikverket Öxnäs
+    api_key: !secret trafikverket_api
+    station: Öxnäs
+    monitored_conditions:
+        - air_temp
+        - road_temp
+        - humidity
+        - precipitation
+        - wind_direction
+        - wind_direction_text
+        - wind_speed
 ################################################################################
 weather:
   - platform: darksky
