@@ -17,6 +17,8 @@ resources:
     type: js
   - url: /local/lovelace-player-config.js?15
     type: js
+  - url: /local/popup-card.js?1
+    type: js
 
 # Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
 background: radial-gradient(crimson, skyblue)
@@ -31,7 +33,7 @@ views:
     # View tab title.
     title: Home
     # Optional unique id for direct access /lovelace/${id}
-    id: home
+    path: home
     # Optional background (overwrites the global background).
     background: radial-gradient(crimson, skyblue)
     # Each view can have a different theme applied. Theme should be defined in the frontend.
@@ -77,7 +79,7 @@ views:
 ########################################################################################################################################
     # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:weather-cloudy
-    id: status
+    path: status
     # Title of the view. Will be used as the tooltip for tab icon
     title: Weather
     type: vertical-stack
@@ -116,7 +118,7 @@ views:
             entity: weather.smhi_home
 ########################################################################################################################################
   - icon: mdi:music
-    id: media
+    path: media
     title: Multi Media
     type: vertical-stack
     cards:
@@ -126,26 +128,26 @@ views:
           - type: media-control
             entity: media_player.lg_smart_tv
           - type: media-control
-            entity: media_player.min_tv
+            entity: media_player.chromecast3041
       - id: aa1f2a8b6f274af2b0101750b6b2391a  # Automatically created id
         type: horizontal-stack
         cards:
-          - type: media-control
-            entity: media_player.my_lovelace_player
+#  - type: media-control
+#    entity: media_player.my_lovelace_player
           - type: media-control
             entity: media_player.lg_oled55c7vz
       - id: 8aeb3bf7fd5f4d128829bf031a513c14  # Automatically created id
         type: horizontal-stack
         cards:
-          - type: media-control
-            entity: media_player.chrome
+#  - type: media-control
+#    entity: media_player.chrome
           - type: entities
             entities:
               - sensor.lastfm_adr29truck
 
 ########################################################################################################################################
   - icon: mdi:bus
-    id: commute
+    path: commute
     title: Commute
     type: vertical-stack
     cards:
@@ -189,9 +191,17 @@ views:
             entity: camera.nordstan_mot_gota_alvbron
             camera_image: camera.nordstan_mot_gota_alvbron
             show_state: false
+      - id: 5d467f7hslb043fc34nf8fc4d655281b # Manually created id
+        type: custom:popup-card
+        entity: camera.nordstan_mot_gota_alvbron
+        title: Time of day
+        card:
+          type: entities
+          entities:
+            - input_select.house_mode
 ########################################################################################################################################
   - icon: mdi:robot-vacuum-variant
-    id: assistants
+    path: assistants
     title: Assistants
     type: vertical-stack
     cards:
@@ -205,7 +215,7 @@ views:
             columns: 2
 ########################################################################################################################################
   - icon: mdi:settings
-    id: settings
+    path: settings
     title: Settings
     type: vertical-stack
     cards:
@@ -217,26 +227,12 @@ views:
             trackers:
               - sensor.custom_card_tracker
               - sensor.custom_component_tracker
-      - id: ef0e127ba990408db4fca9f574f14d6c  # Automatically created id
-        type: entities
+      - theme: Backend-selected
         title: Settings
         show_header_toggle: false
+        id: ef0e127ba990408db4fca9f574f14d6c  # Automatically created id
+        type: entities
         entities:
           - input_boolean.guest
           - type: divider
           - group.all_automations
-
-# NOT WORKING TODO:
-    # - type: custom:alarm_control_panel-card
-    #   entity: alarm_control_panel.alarm
-    #   show_keypad: true
-    #   title: My Alarm
-    #   style: '--alarm-color-disarmed: var(--label-badge-blue);'
-    #   states:
-    #     - arm_home
-    #     - arm_away
-    #   labels:
-    #     ui.card.alarm_control_panel.code: Inserire un codice a 4 cifre
-    #     state.alarm_control_panel.arm_away: Away!!
-########################################################################################################################################
-

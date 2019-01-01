@@ -41,6 +41,9 @@ discovery:
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
+lovelace:
+  mode: yaml
+
 recorder:
   exclude:
     domains:
