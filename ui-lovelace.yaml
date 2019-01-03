@@ -19,6 +19,12 @@ resources:
     type: js
   - url: /local/popup-card.js?1
     type: js
+  - url: https://unpkg.com/moment@2.23.0/moment.js
+    type: js
+  - url: /local/custom_ui/calendar-card/calendar-card.js?v=1.2.2
+    type: module
+  - url: /local/custom_ui/weather-card.js
+    type: js
 
 # Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
 background: radial-gradient(crimson, skyblue)
@@ -75,6 +81,16 @@ views:
               top: 50%
               left: 50%
               width: 100%
+      - id: 1ce3729d67ed4f948gfsja2kfh4b40a6
+        type: custom:calendar-card
+        title: "Calendar"
+        entities: 
+        - !secret calendar_1_entity
+        - !secret calendar_2_entity
+        - !secret calendar_3_entity
+        - !secret calendar_4_entity
+        - !secret calendar_5_entity
+        - !secret calendar_6_entity
 
 ########################################################################################################################################
     # Specify a tab icon if you want the view tab to be an icon.
@@ -82,40 +98,31 @@ views:
     path: status
     # Title of the view. Will be used as the tooltip for tab icon
     title: Weather
+    
     type: vertical-stack
     cards:
-    # - type: markdown
-    #   title: Information
-    #   content: >
-    #     The **Home Assistant** weather page.
-      - id: 112254f5b5a64d16a62bde05cd30b5ff  # Automatically created id
-        type: horizontal-stack
-        cards:
+    - id: 112254f5b5a64d16a62bde05cd30b5ff  # Automatically created id
+      type: horizontal-stack
+      cards:
           - type: custom:gauge-card
-            title: Temp YR
-            entity: sensor.yr_temperature
+            title: Utomhus temp
+            entity: input_number.temperature_home
             min: -15
-            max: 35
-          - type: custom:gauge-card
-            title: Temp Darksky
-            entity: sensor.darksky_temperature
-            min: -15
-            max: 35
-      - id: 8a90979288734b70b0c426e12315b7f7  # Automatically created id
-        type: horizontal-stack
-        cards:
-          - type: weather-forecast
-            entity: weather.darksky
-      - id: fa3d9fa2bb6041878232c3cc291b223d  # Automatically created id
-        type: horizontal-stack
-        cards:
-          - type: weather-forecast
-            entity: weather.yahoo_weather_forecast
-      - id: 826824be83754eb7922bf2df57782a96  # Automatically created id
-        type: horizontal-stack
-        cards:
-          - type: weather-forecast
-            entity: weather.smhi_home
+            max: 35   
+
+    - id: sy89sh98sdf8h893h89hs89dfh83244f
+      type: entities
+      entities: 
+      - sensor.season
+      - sensor.trafikverket_oxnas_road_temperature
+
+  
+    - id: 216824be83754eb7922bf2df57782a96  # Manually created id
+      type: horizontal-stack
+      cards:
+       - type: "custom:weather-card"
+         entity_weather: weather.smhi_home
+         entity_sun: sun.sun
 ########################################################################################################################################
   - icon: mdi:music
     path: media
@@ -217,22 +224,31 @@ views:
   - icon: mdi:settings
     path: settings
     title: Settings
-    type: vertical-stack
     cards:
-      - id: 3b3936fd75254bddaddd8a6f6fe3e615  # Automatically created id
-        type: horizontal-stack
+      - type: vertical-stack
         cards:
-          - type: custom:tracker-card
-            title:
-            trackers:
-              - sensor.custom_card_tracker
-              - sensor.custom_component_tracker
-      - theme: Backend-selected
-        title: Settings
-        show_header_toggle: false
-        id: ef0e127ba990408db4fca9f574f14d6c  # Automatically created id
-        type: entities
-        entities:
-          - input_boolean.guest
-          - type: divider
-          - group.all_automations
+        - id: 3b3936fd75254bddaddd8a6f6fe3e615  # Automatically created id
+          type: horizontal-stack
+          cards:
+            - type: custom:tracker-card
+              title:
+              trackers:
+                - sensor.custom_card_tracker
+                - sensor.custom_component_tracker
+        - theme: Backend-selected
+          title: Settings
+          show_header_toggle: false
+          id: ef0e127ba990408db4fca9f574f14d6c  # Automatically created id
+          type: entities
+          entities:
+            - input_boolean.guest
+            - type: divider
+            - group.all_automations
+      - type: vertical-stack
+        cards: 
+        - id: hdjashdjhakjhsd21414asde21ea45
+          type: glance
+          entities:
+          - input_number.download_speed_used
+          - input_number.upload_speed_used
+
