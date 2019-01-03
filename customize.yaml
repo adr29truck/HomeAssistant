@@ -69,3 +69,6 @@ input_boolean.pappa_home:
   icon: mdi:cellphone-iphone
 input_boolean.guest:
   icon: mdi:account-multiple
+sensor.trafikverket_oxnas_road_temperature:
+  icon: mdi:road-variant
+sensor.yr_symbol: {}
