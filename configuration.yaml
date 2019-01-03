@@ -126,8 +126,15 @@ script: !include scripts.yaml
 ####################################################################################
 #Checks for updates to custom components and cards
 custom_updater:
-###################
-# media
+  card_urls:
+    - https://raw.githubusercontent.com/ljmerza/calendar-card/master/custom_updater.json
+####################################################################################
+# Google components
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+####################################################################################
+# Media
 media_player:
   - platform: webostv
     host: 192.168.1.147
@@ -190,6 +197,29 @@ input_boolean:
     initial: off
   home_occupied:
     name: Home occupied
+#################################################################################
+#Input number
+input_number:
+  temperature_home:
+    name: Outside temperature
+    max: 50
+    min: -40
+    mode: box
+    unit_of_measurement:  °C
+  download_speed_used:
+    name: Download speed utilized
+    max: 90000000
+    min: -1
+    mode: box
+    unit_of_measurement: Mbit/s
+  upload_speed_used:
+    name: Upload speed utilized
+    max: 90000000
+    min: -1
+    mode: box
+    unit_of_measurement: Mbit/s
+
+
 #################################################################################
 device_tracker:
  - platform: nmap_tracker
