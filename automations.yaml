@@ -25,7 +25,7 @@
     platform: state
   action:
   - data:
-      message: A update for Home Assistant is available.
+      message: A update for Home Assistant is available. {{updater.updater.state}}
     service: notify.telegram_notify
 - id: '1538417197012'
   alias: test automation
@@ -42,7 +42,7 @@
 - id: '1539353790986'
   alias: Vacation mode enable
   trigger:
-  - platform: time
+  - platform: time_pattern
     seconds: /5
   condition:
   - condition: state
