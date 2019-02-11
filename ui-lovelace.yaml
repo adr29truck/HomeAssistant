@@ -27,8 +27,7 @@ resources:
     type: js
 
 # Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
-background: radial-gradient(crimson, skyblue)
-#center / cover no-repeat url("/images/background.png") fixed
+background: center / cover no-repeat url("/local/background.png") fixed
 
 # Exclude entities from "Unused entities" view
 # excluded_entities:
@@ -40,10 +39,6 @@ views:
     title: Home
     # Optional unique id for direct access /lovelace/${id}
     path: home
-    # Optional background (overwrites the global background).
-    background: radial-gradient(crimson, skyblue)
-    # Each view can have a different theme applied. Theme should be defined in the frontend.
-    theme: dark-mode
     # The cards to show on this view.
     cards:
         # The filter card will filter entities for their state
@@ -104,13 +99,18 @@ views:
     - id: 112254f5b5a64d16a62bde05cd30b5ff  # Automatically created id
       type: horizontal-stack
       cards:
-          - type: custom:gauge-card
-            title: Utomhus temp
+          - type: gauge
+            name: Utomhus temp
             entity: input_number.temperature_home
+            unit: °C
             min: -15
             max: 35   
+            severity:
+              yellow: 0
+              green: 10
+              red: 25
 
-    - id: sy89sh98sdf8h893h89hs89dfh83244f
+    - id: sy89sh98sdf8h893h89hs89dfh83244f # Manually created id
       type: entities
       entities: 
       - sensor.season
@@ -120,9 +120,10 @@ views:
     - id: 216824be83754eb7922bf2df57782a96  # Manually created id
       type: horizontal-stack
       cards:
-       - type: "custom:weather-card"
-         entity_weather: weather.smhi_home
-         entity_sun: sun.sun
+      - type: "custom:weather-card"
+        entity_weather: weather.smhi_home
+        entity_sun: sun.sun
+
 ########################################################################################################################################
   - icon: mdi:music
     path: media
@@ -130,27 +131,98 @@ views:
     type: vertical-stack
     cards:
       - id: 42ebabb7d68a41a4b6018ae5bf053701  # Automatically created id
-        type: horizontal-stack
+        type: vertical-stack
         cards:
-          - type: media-control
-            entity: media_player.lg_smart_tv
-          - type: media-control
-            entity: media_player.my_room_speaker
-      - id: aa1f2a8b6f274af2b0101750b6b2391a  # Automatically created id
-        type: horizontal-stack
-        cards:
-#  - type: media-control
-#    entity: media_player.my_lovelace_player
-          - type: media-control
-            entity: media_player.lg_oled55c7vz
-      - id: 8aeb3bf7fd5f4d128829bf031a513c14  # Automatically created id
-        type: horizontal-stack
-        cards:
-#  - type: media-control
-#    entity: media_player.chrome
+        - type: markdown
+          content: "## Övervåningen"
+        - type: vertical-stack
+          cards:
           - type: entities
             entities:
               - sensor.lastfm_adr29truck
+        - type: horizontal-stack
+          cards:
+          - type: conditional
+            conditions:
+              - entity: media_player.my_room_speaker
+                state_not: "unavailable"
+              - entity: media_player.my_room_speaker
+                state_not: "off"
+            card:
+              type: media-control
+              entity: media_player.my_room_speaker
+          - type: conditional
+            conditions:
+            - entity:  media_player.home
+              state_not: "unavailable"
+            - entity: media_player.my_room_speaker
+              state_not: "playing"
+            card:
+              type: media-control
+              entity: media_player.home
+      - id: aa1f2a8b6f274af2b0101750b6b2391a  # Automatically created id
+        type: vertical-stack
+        cards:
+        - type: markdown
+          content: "## Nedervåningen"
+        - type: horizontal-stack
+          cards:
+          - type: conditional
+            conditions:
+              - entity: media_player.lg_smart_tv
+                state_not: "unavailable"
+            card:
+              type: media-control
+              entity: media_player.lg_smart_tv
+          - type: conditional
+            conditions:
+            - entity:  media_player.chromecast3041
+              state_not: "unavailable"
+            card:
+              type: media-control
+              entity: media_player.chromecast3041
+          - type: conditional
+            conditions:
+            - entity: media_player.lg_oled55c7vz
+              state_not: "unavailable"
+            card:
+            - type: media-control
+              entity: media_player.lg_oled55c7vz
+          - type: conditional
+            conditions:
+              - entity: media_player.neder_vaningen
+                state_not: "unavailable"
+            card:
+              type: media-control
+              entity: media_player.neder_vaningen
+        - type: horizontal-stack
+          cards:
+          - type: conditional
+            conditions:
+              - entity: media_player.vardagsrummet
+                state_not: "unavailable"
+            card:
+              type: media-control
+              entity: media_player.vardagsrummet
+          - type: conditional
+            conditions:
+              - entity: media_player.hela_huset
+                state_not: "unavailable"
+            card:
+              type: media-control
+              entity: media_player.hela_huset
+      # - id: 8aeb3bf7fd5f4d128829bf031a513c14  # Automatically created id
+      #   type: vertical-stack
+      #   cards:
+      #     - type: horizontal-stack
+      #       cards:
+      #       - type: conditional
+      #         conditions:
+      #           - entity: media_player.chromecastaudio0617
+      #             state_not: "unavailable"
+      #         card:
+      #           type: media-control
+                # entity: media_player.chromecastaudio0617
 
 ########################################################################################################################################
   - icon: mdi:bus
@@ -162,11 +234,12 @@ views:
         type: horizontal-stack
         cards:
           - type: glance
-            title: "                            Nästa Buss"
+            title: "                               Nästa Buss"
             entities:
-              - sensor.mot_stan
-              - sensor.mot_torslanda
+              - sensor.buss_mot_stan
+              - sensor.buss_mot_torslanda
             columns: 2
+            # show_name: false
       - id: 49e6ad58317e44f88e6ee07b873ec08d  # Automatically created id
         type: horizontal-stack
         cards:
@@ -198,14 +271,16 @@ views:
             entity: camera.nordstan_mot_gota_alvbron
             camera_image: camera.nordstan_mot_gota_alvbron
             show_state: false
-      - id: 5d467f7hslb043fc34nf8fc4d655281b # Manually created id
-        type: custom:popup-card
-        entity: camera.nordstan_mot_gota_alvbron
-        title: Time of day
-        card:
-          type: entities
-          entities:
-            - input_select.house_mode
+            
+      # This creates a popup when pressed but also a big whitespace, rendering the site non centered
+      # - id: 5d467f7hslb043fc34nf8fc4d655281b # Manually created id
+      #   type: custom:popup-card
+      #   entity: camera.nordstan_mot_gota_alvbron
+      #   title: Time of day
+      #   card:
+      #     type: entities
+      #     entities:
+      #       - input_select.house_mode
 ########################################################################################################################################
   - icon: mdi:robot-vacuum-variant
     path: assistants
@@ -235,6 +310,17 @@ views:
               trackers:
                 - sensor.custom_card_tracker
                 - sensor.custom_component_tracker
+        - type: conditional
+          conditions:
+          - entity: updater.updater
+            state_not: 
+            - "unavailable"
+            - "off"
+            - "unkown"
+          card:
+            type: entities
+            entities: 
+            - updater.updater
         - theme: Backend-selected
           title: Settings
           show_header_toggle: false
@@ -246,7 +332,7 @@ views:
             - group.all_automations
       - type: vertical-stack
         cards: 
-        - id: hdjashdjhakjhsd21414asde21ea45
+        - id: hdjashdjhakjhsd21414asde21ea45  # Manually created id
           type: glance
           entities:
           - input_number.download_speed_used

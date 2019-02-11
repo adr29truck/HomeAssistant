@@ -72,3 +72,11 @@ input_boolean.guest:
 sensor.trafikverket_oxnas_road_temperature:
   icon: mdi:road-variant
 sensor.yr_symbol: {}
+sensor.buss_mot_stan:
+  entity_picture: /local/icons/svart.svg
+  friendly_name: Göteborg
+sensor.buss_mot_torslanda:
+  entity_picture: /local/icons/svart.svg
+  friendly_name: Torslanda
+sensor.mot_backaplan:
+  entity_picture: /local/icons/22.svg

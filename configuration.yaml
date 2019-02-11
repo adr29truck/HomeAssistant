@@ -1,7 +1,7 @@
 homeassistant:
   # This is the legacy auth method. Need to change when NodeRed supports new auth system.
-  auth_providers:
-  - type: legacy_api_password
+  # auth_providers:
+  # - type: legacy_api_password
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
@@ -17,7 +17,7 @@ homeassistant:
   customize: !include customize.yaml
 
 # Show links to resources in log and frontend
-introduction:
+# introduction:
 
 # Enables the frontend
 frontend:
@@ -28,6 +28,8 @@ config:
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
    api_password: !secret http_password
+
+websocket_api:
 #   base_url: example.duckdns.org:8123
 
 # Checks for available updates
@@ -41,6 +43,9 @@ discovery:
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
+# System health that can be displayed in devtools under the i
+system_health:
+
 lovelace:
   mode: yaml
 
@@ -52,6 +57,15 @@ recorder:
     - camera
     - device_tracker
     entities:
+    - sensor.asuswrt_upload_speed
+    - sensor.asuswrt_upload
+    - sensor.asuswrt_download_speed
+    - sensor.asuswrt_download
+    - sensor.yr_temperature
+    - sensor.yr_dewpoint_temperature
+    - sensor.trafikverket_oxnas_air_temperature
+    - sensor.ip_webcam_battery_temperature
+    - sensor.darksky_temperature
     - sensor.worldclock_sensor
     - sensor.mot_stan
     - sensor.mot_torslanda
@@ -123,6 +137,12 @@ cloud:
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+####################################################################################
+mqtt:
+  broker: m14.cloudmqtt.com
+  port: 25213
+  username: !secret mqtt_username
+  password: !secret mqtt_password
 ####################################################################################
 #Checks for updates to custom components and cards
 custom_updater:
@@ -289,6 +309,16 @@ ifttt:
   key: !secret iftt_key
 ###################################################################################
 sensor:
+  # Creates a sensor displaying the next two bus depatures
+  - platform: template
+    sensors:
+      buss_mot_stan:
+        friendly_name: "Svart mot Göteborg"
+        value_template: '{% if states("sensor.mot_stan") != states("sensor.mot_stan_efter") -%}{{ states("sensor.mot_stan") }}          {{states("sensor.mot_stan_efter") }}{%else %}{{ states("sensor.mot_stan") }}     {%endif %}'
+      buss_mot_torslanda:
+        friendly_name: "Svart mot Torslanda"
+        value_template: '{% if states("sensor.mot_torslanda") != states("sensor.mot_torslanda_efter") -%}{{ states("sensor.mot_torslanda") }}          {{states("sensor.mot_torslanda_efter") }}{%else %}{{ states("sensor.mot_torslanda") }}     {%endif %}'
+
 # Weather prediction
   - platform: yr
     monitored_conditions:
@@ -305,6 +335,7 @@ sensor:
       - mediumClouds
       - highClouds
       - dewpointTemperature
+
     #Clock
   - platform: worldclock
     time_zone: Europe/Stockholm
@@ -351,9 +382,23 @@ sensor:
         from: Kvisljungeby
         heading: Nordstan
         delay: 8
+      - name: Mot Stan Efter
+        from: Kvisljungeby
+        heading: Nordstan
+        delay: 16
       - name: Mot Torslanda
         from: Kvisljungeby
         heading: Torslandakrysset
+        delay: 8
+      - name: Mot Torslanda Efter
+        from: Kvisljungeby
+        heading: Torslandakrysset
+        delay: 16
+      - name: Mot Backaplan
+        from: Skra Bro
+        heading: Hjalmar Brantingsplatsen
+        lines: 
+        - 22
         delay: 8
 
 #haveibeenpwned
