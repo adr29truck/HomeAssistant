@@ -1,0 +1,12 @@
+- id: 12312412748asd98123asd 
+  alias: 'Telegram bot that reply pong to ping'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/ping'
+  action:
+    - service: notify.homeassistant
+      data:
+        message: 'pong'

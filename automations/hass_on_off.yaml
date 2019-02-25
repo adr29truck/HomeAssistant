@@ -1,0 +1,20 @@
+- id: '1538408433536'
+  alias: Notify hass on
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - data:
+      message: Home Assistant just started!
+    service: notify.homeassistant
+- id: '1538408477552'
+  alias: Notify hass off
+  trigger:
+  - event: shutdown
+    platform: homeassistant
+  condition: []
+  action:
+  - data:
+      message: Home Assistant just stopped working!
+    service: notify.homeassistant

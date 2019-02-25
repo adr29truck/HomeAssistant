@@ -1,0 +1,3 @@
+  - name: HomeAssistant
+    platform: telegram
+    chat_id: REDACTED

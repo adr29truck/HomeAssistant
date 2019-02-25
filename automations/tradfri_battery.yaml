@@ -1,0 +1,11 @@
+- id: '1236781253671452'
+  alias: Low battery warning
+  trigger:
+  - entity_id: sensor.tradfri_motion_sensor
+    platform: numeric_state
+    value_template: '{{ sensor.tradfri_motion_sensor.state }}'
+    below: 20
+  action:
+    - service: notify.homeassistant
+      data:
+        message: 'The battery level is below 20% for {{ sensor.tradfri_motion_sensor.attributes.friendly_name }}'

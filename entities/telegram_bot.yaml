@@ -1,0 +1,4 @@
+  - platform: polling
+    api_key: REDACTED
+    allowed_chat_ids:
+      - REDACTED

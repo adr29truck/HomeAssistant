@@ -1,0 +1,19 @@
+- id: '1539353790986'
+  alias: Vacation mode enable
+  trigger:
+  - platform: time_pattern
+    seconds: /5
+  condition:
+  - condition: state
+    entity_id: input_select.presence
+    for:
+      hours: 24
+    state: Away
+  action:
+  - data:
+      entity_id: input_select.presence
+      option: Vacation
+    service: input_select.select_option
+  - data:
+      message: The house has entered vacation state.
+    service: notify.homeassistant

@@ -1,0 +1,4 @@
+  broker: m14.cloudmqtt.com
+  port: 25213
+  username: !secret mqtt_username
+  password: !secret mqtt_password

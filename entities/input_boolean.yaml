@@ -1,0 +1,5 @@
+  guest:
+    name: Guests
+    initial: off
+  home_occupied:
+    name: Home occupied
