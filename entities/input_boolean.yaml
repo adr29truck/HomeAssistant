@@ -3,3 +3,9 @@
     initial: off
   home_occupied:
     name: Home occupied
+  start_jamfm_downstairs:
+    name: JamFm downstairs
+    initial: off
+  start_jamfm_my_room:
+    name: JamFm upstairs
+    initial: off

@@ -44,3 +44,4 @@ owntracks:
 googlehome: !include entities/googlehome.yaml
 notify: !include entities/notify.yaml
 telegram_bot: !include entities/telegram_bot.yaml
+weather: !include entities/weather.yaml

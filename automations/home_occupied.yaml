@@ -1,0 +1,45 @@
+- id: 'hasjdasd420df9034'
+  alias: 'Set home to occupied'
+  trigger: 
+    platform: state
+    entity_id: person.adrian, person.ella, person.jessica, person.per
+    to: home
+  action:
+  - service: input_boolean.turn_on
+    data: 
+      entity_id: input_boolean.home_occupied
+
+
+- id: 'hasjdasdh334'
+  alias: 'Set home to not occupied'
+  trigger: 
+    platform: state
+    entity_id: person.adrian, person.ella, person.jessica, person.per
+    to: not_home
+  condition: 
+    condition: and
+    conditions: 
+    - condition: state
+      entity_id: person.adrian
+      state: not_home
+      for:
+        minutes: 5
+    - condition: state
+      entity_id: person.ella
+      state: not_home
+      for:
+        minutes: 5
+    - condition: state
+      entity_id: person.jessica
+      state: not_home
+      for:
+        minutes: 5
+    - condition: state
+      entity_id: person.per
+      state: not_home
+      for:
+        minutes: 5
+  action:
+  - service: input_boolean.turn_off
+    data: 
+      entity_id: input_boolean.home_occupied

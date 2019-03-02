@@ -5,3 +5,65 @@
     access_token: !secret github_access_token
     repositories:
       - path: 'home-assistant/home-assistant'
+      - path: 'adr29truck/HomeAssistant'
+  # Västtrafik sensor
+  - platform: vasttrafik
+    key: !secret vasttrafik_key
+    secret: !secret vasttrafik_secret
+    departures:
+      - name: Mot Stan
+        from: Skra Bro
+        heading: Nordstan
+        lines:
+        - SVART
+        delay: 8
+      - name: Mot Stan Efter
+        from: Skra Bro
+        heading: Nordstan
+        lines:
+        - SVART
+        delay: 16
+      - name: Mot Torslanda
+        from: Skra Bro
+        heading: Torslandakrysset
+        lines:
+        - SVART
+        delay: 8
+      - name: Mot Torslanda Efter
+        from: Skra Bro
+        heading: Torslandakrysset
+        lines:
+        - SVART
+        delay: 16
+      - name: Mot Backaplan
+        from: Skra Bro
+        heading: Hjalmar Brantingsplatsen
+        lines: 
+        - 22
+        delay: 8
+#Worx landroid status sensor
+######################################
+  # - platform: worxlandroid
+  #   host: 192.168.1.123
+  #   pin: "XXXX"
+  # Lastfm sensor
+  - platform: lastfm
+    api_key: !secret lastfm_api
+    users:
+      - adr29truck
+#Trafikverket data sensor
+  - platform: trafikverket_weatherstation
+    name: Trafikverket Öxnäs
+    api_key: !secret trafikverket_api
+    station: Öxnäs
+    monitored_conditions:
+        - air_temp
+        - road_temp
+        - humidity
+        - precipitation
+        - wind_direction
+        - wind_direction_text
+        - wind_speed
+  #Outputs the current season. meteorological     
+  - platform: season
+    type: meteorological
