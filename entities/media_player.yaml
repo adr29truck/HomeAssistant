@@ -1,8 +1,11 @@
   - platform: webostv
-    host: 192.168.1.147
     name: LG Smart TV
+    host: 192.168.1.98
   #other settings
     turn_on_action:
       service: wake_on_lan.send_magic_packet
       data:
         mac: !secret tv_mac
+  - platform: spotify
+    client_id: REDACTED
+    client_secret: REDACTED

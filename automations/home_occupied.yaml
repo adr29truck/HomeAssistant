@@ -15,30 +15,25 @@
   trigger: 
     platform: state
     entity_id: person.adrian, person.ella, person.jessica, person.per
+    from: home
     to: not_home
+    for:
+      minutes: 5
   condition: 
     condition: and
     conditions: 
     - condition: state
       entity_id: person.adrian
       state: not_home
-      for:
-        minutes: 5
     - condition: state
       entity_id: person.ella
       state: not_home
-      for:
-        minutes: 5
     - condition: state
       entity_id: person.jessica
       state: not_home
-      for:
-        minutes: 5
     - condition: state
       entity_id: person.per
       state: not_home
-      for:
-        minutes: 5
   action:
   - service: input_boolean.turn_off
     data: 

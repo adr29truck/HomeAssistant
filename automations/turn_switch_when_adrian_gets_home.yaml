@@ -1,0 +1,19 @@
+- id: 'asjidjkasdk'
+  alias: 'Adrian gets home while it´s dark outside'
+  trigger:
+  - platform: state
+    entity_id: 'person.adrian'
+    from: 'not_home'
+    to: home
+  condition:
+   condition: or
+   conditions:
+    - condition: sun
+      after: sunset
+    - condition: sun
+      before: sunrise
+  action:
+    service: switch.turn_on
+    data:
+      entity_id:
+        - switch.my_light

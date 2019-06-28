@@ -2,32 +2,31 @@
   alias: 'Adrian got home alone'
   trigger:
   - platform: state
-    entity_id: 'person.adrian'
+    entity_id:  person.adrian
+    from: not_home
     to: home
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: 'person.ella'
+        entity_id: person.ella
         state: not_home
         for:
-          minutes: 30            
+          minutes: 30         
       - condition: state
-        entity_id: 'person.jessica'
-        state: not_home
-        for:
-          minutes: 30            
-      - condition: state
-        entity_id: 'person.per'
+        entity_id: person.jessica
         state: not_home
         for:
           minutes: 30
       - condition: state
-        entity_id: input_boolean.home_occupied
-        state: 'off'            
-  action: 
+        entity_id: person.per
+        state: not_home
+        for:
+          minutes: 30
+      - condition: state
+        entity_id: input_boolean.guest
+        state: 'off'
+  action:
     service: input_boolean.turn_on
     data:
       entity_id: input_boolean.start_jamfm_my_room
-      
-  

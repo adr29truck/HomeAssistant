@@ -1,0 +1,4 @@
+guests_home:
+  initial: 0
+  step: 1
+  icon: mdi:counter
