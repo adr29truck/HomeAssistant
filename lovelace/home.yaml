@@ -1,0 +1,50 @@
+title: Home
+path: home
+theme: dark
+background: radial-gradient(crimson, skyblue)
+icon: mdi:home-variant-outline
+cards:
+  - type: custom:compact-custom-header
+    main_config: true
+    options: clock
+    clock_format: 24
+    clock_am_pm: false
+    sidebar_swipe: true
+    swipe: true
+    swipe_wrap: false
+  - type: glance
+    entities:
+    - person.wilmer
+    - person.ella
+    - person.adrian
+    - person.jessica
+    - person.per
+    - input_boolean.guest
+    columns: 6
+  - type: custom:simple-weather-card
+    entity: weather.smhi
+    name: "There is no name here"
+    backdrop: true
+  - type: weather-forecast
+    entity: weather.smhi_home
+  - type: custom:pollenkoll-card
+    title: false    
+    city: goREDACTED
+    minimal: true
+    allergens:
+      - Al
+      - Alm
+      - Ambrosia
+      - Björk
+      - Ek
+      - Gråbo
+      - Gräs
+      - Hassel
+  - type: vertical-stack
+    cards:
+    - type: custom:krisinfo-card
+      entity: sensor.krisinformation_goREDACTED
+      only_alerts: true
+    - type: custom:krisinfo-card
+      entity: sensor.krisinformation_sverige
+      only_alerts: true

@@ -1,0 +1,58 @@
+title: Media
+path: media
+theme: dark
+background: radial-gradient(crimson, skyblue)
+icon: mdi:speaker-multiple
+cards:
+    - type: custom:compact-custom-header
+    - type: entities
+      entities:
+      - type: custom:mini-media-player
+        entity: media_player.lg_smart_tv
+        group: true
+        artwork: cover
+        info: short
+      - type: custom:mini-media-player
+        entity: media_player.living_room_tv
+        group: true
+        hide:
+          controls: true
+          progress: true
+
+    - type: custom:mini-media-player
+      artwork: cover
+      entity: media_player.neder_vaningen
+
+    - type: custom:mini-media-player
+      artwork: cover
+      entity: media_player.vardagsrummet
+
+    - type: entities
+      entities:
+      - type: custom:mini-media-player
+        entity: media_player.my_room
+        artwork: cover
+        artwork_border: true
+        group: true
+        info: short
+        hide:
+          power: true
+      - type: custom:mini-media-player
+        entity: media_player.z_my_room_speaker
+        group: true 
+        hide:
+          progress: true
+          controls: true
+          icon: true
+      - type: custom:mini-media-player
+        entity: media_player.chromecastaudio5049
+        group: true
+        hide:
+          runtime: true
+          icon: true
+          progress: true
+          controls: true
+          
+    - type: custom:mini-media-player
+      artwork: cover
+      entity: media_player.hela_huset
