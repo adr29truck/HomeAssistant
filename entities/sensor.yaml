@@ -5,3 +5,133 @@
     access_token: !secret github_access_token
     repositories:
       - path: 'home-assistant/home-assistant'
+      - path: 'adr29truck/HomeAssistant'
+  # Västtrafik sensor
+  - platform: vasttrafik
+    key: !secret vasttrafik_key
+    secret: !secret vasttrafik_secret
+    departures:
+      - name: Mot Stan
+        from: Skra Bro
+        heading: Nordstan
+        lines:
+        - SVART
+        delay: 8
+      - name: Mot Stan Efter
+        from: Skra Bro
+        heading: Nordstan
+        lines:
+        - SVART
+        delay: 16
+      - name: Mot Torslanda
+        from: Skra Bro
+        heading: Torslandakrysset
+        lines:
+        - SVART
+        delay: 8
+      - name: Mot Torslanda Efter
+        from: Skra Bro
+        heading: Torslandakrysset
+        lines:
+        - SVART
+        delay: 16
+      - name: Mot Backaplan
+        from: Skra Bro
+        heading: Hjalmar Brantingsplatsen
+        lines: 
+        - 22
+        delay: 8
+#Worx landroid status sensor
+######################################
+  # - platform: worxlandroid
+  #   host: 192.168.1.123
+  #   pin: "XXXX"
+  # Lastfm sensor
+  - platform: lastfm
+    api_key: !secret lastfm_api
+    users:
+      - adr29truck
+#Trafikverket data sensor
+  - platform: trafikverket_weatherstation
+    name: Trafikverket Öxnäs
+    api_key: !secret trafikverket_api
+    station: Öxnäs
+    monitored_conditions:
+        - air_temp
+        - road_temp
+        - humidity
+        - precipitation
+        - wind_direction
+        - wind_direction_text
+        - wind_speed
+  #Outputs the current season. meteorological     
+  - platform: season
+    type: meteorological
+  - platform: worxlandroid
+    host: 192.168.1.155
+    pin: '0000'
+    
+  - platform: template
+    sensors:
+      worxlandroid_battery1:
+        value_template: <
+          {{ states('sensor.worxlandroid_battery') }}
+        unit_of_measurement: '%'
+        entity_id: sensor.worxlandroid_battery
+        icon_template: >-
+            {% if states.sensor.worxlandroid_battery < 89 %}
+            mdi:battery-90
+            {% elif states.sensor.worxlandroid_battery < 79 %}
+            mdi:battery-80
+            {% elif states.sensor.worxlandroid_battery < 69 %}
+            mdi:battery-70
+            {% elif states.sensor.worxlandroid_battery < 59 %}
+            mdi:battery-60
+            {% elif states.sensor.worxlandroid_battery < 49 %}
+            mdi:battery-50
+            {% elif states.sensor.worxlandroid_battery < 39 %}
+            mdi:battery-40
+            {% elif states.sensor.worxlandroid_battery < 29 %}
+            mdi:battery-30
+            {% elif states.sensor.worxlandroid_battery < 19 %}
+            mdi:battery-20
+            {% elif states.sensor.worxlandroid_battery < 09 %}
+            mdi:battery-10
+            {% elif states.sensor.worxlandroid_battery < 0 %}
+            mdi:battery-outline
+            {% else %}
+            mdi:offline-bolt
+            {% endif %}
+      sun_state:
+        friendly_name: "Sun State"
+        value_template: >-
+          {% if is_state('sun.sun', 'above_horizon') %}
+            up
+          {% else %}
+            down
+          {% endif %}
+  - platform: pollenniva
+    scan_interval: 4
+    state_as_string: false
+    sensors:
+      - city: GöREDACTED
+        days_to_track: 4
+        allergens:
+          - Al
+          - Alm
+          - Ambrosia
+          - Björk
+          - Ek
+          - Gråbo
+          - Gräs
+          - Hassel
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+  # Krisinformation
+  - platform: krisinformation
+    name: "Krisinformation GöREDACTED"
+    county: "Västra Götalands län"
+  - platform: krisinformation
+    country: 'Sverige'

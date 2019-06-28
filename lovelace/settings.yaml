@@ -1,0 +1,45 @@
+title: settings
+path: settings
+theme: dark
+background: radial-gradient(crimson, skyblue)
+icon: mdi:settings
+
+cards:
+  - type: custom:compact-custom-header
+  - type: vertical-stack
+    cards:
+    - type: entities
+      entities:
+      - entity: group.all_automations
+        icon: mdi:home-automation
+
+  - type: vertical-stack
+    cards:
+    - type: entities
+      entities: 
+      - entity: sensor.worxlandroid_state
+        icon: mdi:robot
+      - type: custom:mini-graph-card
+        entities: 
+        - sensor.worxlandroid_battery
+        icon: mdi:battery-charging
+        group: true
+        color_thresholds:
+        - value: 20
+          color: "#ff0000"
+        - value: 40
+          color: "#ffff00"
+        - value: 60
+          color: "#00ff00"
+      color_thresholds_transition: smooth
+
+    - type: vertical-stack
+      cards:
+      - type: entities
+        entities:
+        - entity: input_boolean.party
+          icon: mdi:glass-cocktail
+      - type: custom:krisinfo-card
+        entity: sensor.krisinformation_goREDACTED
+      - type: custom:krisinfo-card
+        entity: sensor.krisinformation_sverige

@@ -1,0 +1,13 @@
+- id: '1551286203358'
+  alias: Max volume CCA
+  trigger:
+  - above: '0.2'
+    entity_id: media_player.z_chromecast_audio
+    platform: numeric_state
+    value_template: '{{ media_player.z_chromecast_audio.attributes.volume_level }}'
+  condition: []
+  action:
+  - data:
+      entity: media_player.z_chromecast_audio
+      volume_level: '0.18'
+    service: media_player.volume_set

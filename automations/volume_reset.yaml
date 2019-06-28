@@ -1,0 +1,50 @@
+# Downstairs
+- id: 'isadhsd92asd2123'
+  alias: 'Reset volume after being idle vardagsrum'
+  trigger:
+  - entity_id: media_player.z_chromecast_audio
+    platform: state
+    to: 'off'
+    for: '01:30:00'
+  - entity_id: media_player.z_chromecast_audio
+    platform: state
+    to: 'idle'
+    for: '01:30:00'
+  action:
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.z_chromecast_audio
+      volume_level: 0.08
+
+# Upstairs
+- id: 'isadhsd92asd21134'
+  alias: 'Reset volume after being idle Adrians´ room'
+  trigger:
+  - entity_id: media_player.z_my_room_speaker
+    platform: state
+    to: 'off'
+    for: '01:30:00'
+  - entity_id: media_player.z_my_room_speaker
+    platform: state
+    to: 'idle'
+    for: '01:30:00'
+  - entity_id: media_player.my_room
+    platform: state
+    to: 'idle'
+    for: '01:30:00'
+  - entity_id: media_player.my_room
+    platform: state
+    to: 'off'
+    for: '01:30:00'
+  - entity_id: media_player.chromecastaudio5049
+    platform: state
+    to: 'off'
+    for: '01:30:00'
+  - entity_id: media_player.chromecastaudio5049
+    platform: state
+    to: 'idle'
+    for: '01:30:00'
+  action:
+  - service: script.toggle
+    data:
+      entity_id: script.morning_routine

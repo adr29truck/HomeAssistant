@@ -1,0 +1,15 @@
+- id: 'tradfrigw'
+  alias: Trådfri GW offline
+  trigger:
+    - platform: state
+      entity_id: device_tracker.gw_b8d7af2cabad      
+  condition:
+  - condition: state
+    entity_id: device_tracker.gw_b8d7af2cabad
+    for:
+      minutes: 10
+    state: not_home
+  action:
+    - service: notify.homeassistant
+      data:
+        message: 'Trådfri GW went offline. It might need to be restarted.'

@@ -1,0 +1,65 @@
+- id: 'dasdjasd12'
+  alias: 'Guest toggler on'
+  trigger:
+  - platform: numeric_state
+    entity_id: counter.guests_home
+    above: 0
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.guest
+
+- id: 'dasdjasdasf212'
+  alias: 'Guest toggler off'
+  trigger:
+  - platform: numeric_state
+    entity_id: counter.guests_home
+    below: 1
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.guest
+
+- id: 'sdhaj'
+  alias: 'Guest counter +'
+  trigger:
+  - platform: state
+    entity_id: device_tracker.REDACTEDs_ipad, device_tracker.REDACTEDs_iphone, device_tracker.REDACTEDs_iphone
+    from: not_home
+    to: home
+  action:
+  - service: counter.increment
+    entity_id: counter.guests_home
+
+- id: 'sdhajs'
+  alias: 'Guest counter -'
+  trigger:
+  - platform: state
+    entity_id: device_tracker.REDACTEDs_ipad ,device_tracker.REDACTEDs_iphone, device_tracker.REDACTEDs_iphone
+    from: home
+    to: not_home
+  action:
+  - service: counter.decrement
+    entity_id: counter.guests_home
+
+- id: 'da1234jasd12'
+  alias: 'Guest toggle off asker'
+  trigger:
+  - platform: state
+    entity_id: device_tracker.REDACTEDs_ipad, device_tracker.REDACTEDs_iphone
+    from: home
+    to: not_home
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: device_tracker.REDACTEDs_ipad
+      state: not_home
+    - condition: state
+      entity_id: device_tracker.REDACTEDs_iphone
+      state: not_home
+    - condition: numeric_state
+      entity_id: counter.guests_home
+      below: 1
+  action:
+  - service: notify.homeassistant
+    data:
+      message: 'There appears to be no guest´s home at the current time. Should guest mode be turned off?'

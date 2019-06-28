@@ -11,26 +11,42 @@ homeassistant:
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Stockholm
   # Customization file
-  customize: !include customize.yaml
+  customize: !include_dir_merge_named custom_styles
+  # customize: !include customize.yaml
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
-default_config:
+discovery:
+config:
+updater:
+map:
+person:
+sun:
+system_health:
+lovelace:
+  mode: yaml
 
-
+frontend:
+  themes: !include theme.yaml
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
-  base_url: REDACTED.duckdns.org:8123
+  base_url: https://REDACTED.asuscomm.com:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
 
 # Sensors
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
 
 group: !include groups.yaml
 script: !include scripts.yaml
+# !include_dir_merge_list scripts
 
-
+google_assistant:
+  project_id: REDACTED
+  api_key: REDACTED
 
 
 automation: !include_dir_merge_list automations
@@ -44,3 +60,17 @@ owntracks:
 googlehome: !include entities/googlehome.yaml
 notify: !include entities/notify.yaml
 telegram_bot: !include entities/telegram_bot.yaml
+weather: !include entities/weather.yaml
+counter: !include entities/counters.yaml
+binary_sensor: !include entities/binary_sensors.yaml
+hacs:
+  token: !secret my_github_access_token
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: REDACTED
+  max_retries: 3
+  default_measurement: state

@@ -1,0 +1,11 @@
+- id: 'radjkasdnjn21e324'
+  alias:  'Change volume at 21:00:00'
+  trigger:
+  - entity_id: sensor.time
+    platform: state
+    to: '21:00:00'
+  action:
+  - service: 'media_player.volume_set'
+    data:
+      entity: 'media_player.z_my_room_speaker'
+      volume_level: '0.1'
