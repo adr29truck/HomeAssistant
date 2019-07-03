@@ -58,6 +58,7 @@ asuswrt: !include entities/asuswrt.yaml
 mqtt: !include entities/mqtt.yaml
 owntracks:
 googlehome: !include entities/googlehome.yaml
+google: !include entities/google.yaml
 notify: !include entities/notify.yaml
 telegram_bot: !include entities/telegram_bot.yaml
 weather: !include entities/weather.yaml

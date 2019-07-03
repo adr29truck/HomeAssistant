@@ -1,0 +1,32 @@
+title: Daily
+path: daily
+theme: dark
+background: radial-gradient(crimson, skyblue)
+icon: mdi:elevation-rise
+cards:
+  - type: entities
+    entities:
+    - type: custom:fold-entity-row
+      head: sensor.avanza_stock_percent_sas
+      entities:
+        - sensor.avanza_stock_sas
+    - type: custom:fold-entity-row
+      head: sensor.avanza_stock_percent_nax
+      entities:
+        - sensor.avanza_stock_norwegian_air_shuttle
+    - type: custom:fold-entity-row
+      head: sensor.avanza_stock_percent_teslainc
+      entities:
+        - sensor.avanza_stock_tesla_inc
+    - type: custom:fold-entity-row
+      head: sensor.avanza_stock_percent_volvoab
+      entities:
+        - sensor.avanza_stock_volvo_ab_b
+    - type: custom:fold-entity-row
+      head: sensor.avanza_stock_percent_telia
+      entities:
+        - sensor.avanza_stock_telia
+    - type: custom:fold-entity-row
+      head: sensor.avanza_stock_percent_swedbank
+      entities:
+        - sensor.avanza_stock_swedbank_robur_transfear_70

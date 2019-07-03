@@ -1,0 +1,32 @@
+title: My Awesome Home
+resources:
+  - url: /local/custom_cards/github/pollenkoll-card/pollenkoll-card.js?v1
+    type: js
+  - url: /local/custom_cards/github/card-tools.js?v=1
+    type: js
+  - url: /community_plugin/mini-media-player/mini-media-player.js
+    type: module
+  - url: /community_plugin/mini-graph-card/mini-graph-card.js
+    type: module
+  - url: /community_plugin/lovelace-card-mod/card-mod.js
+    type: module
+  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+    type: module
+  - url: /local/custom_cards/github/simple-weather-card.bundle.js
+    type: js
+  - url: /community_plugin/lovelace-fold-entity-row/fold-entity-row.js
+    type: module
+  - url: /community_plugin/krisinfo-card/krisinfo-card.js
+    type: js
+cch:
+    options: clock
+    clock_format: 24
+    clock_am_pm: false
+    sidebar_swipe: true
+    swipe: true
+    swipe_wrap: false
+views:
+  - !include lovelace/home.yaml
+  - !include lovelace/media.yaml
+  - !include lovelace/settings.yaml
+  - !include lovelace/daily.yaml
