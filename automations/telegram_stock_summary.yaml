@@ -1,0 +1,36 @@
+# Telegram Stock Summary
+- alias: 'Telegram Stock Summary'
+  id: telegramstocksum
+  initial_state: true
+  trigger:
+    - platform: time
+      at: '18:00:00'
+  condition:
+    condition: state
+    entity_id: binary_sensor.workday
+    state: 'on'
+
+  action:
+    - service: telegram_bot.send_message
+      data:
+        parse_mode: html
+        message: '
+          <b>Stock Summary {{ states.sensor.date.state }}</b>
+          <code>
+          {{ states.sensor.avanza_stock_sas.attributes.name }} : {{ states.sensor.avanza_stock_sas.attributes.changePercent }}
+          </code>
+          <code>
+          {{ states.sensor.avanza_stock_norwegian_air_shuttle.attributes.name }} : {{ states.sensor.avanza_stock_norwegian_air_shuttle.attributes.changePercent }}
+          </code>
+          <code>
+          {{ states.sensor.avanza_stock_volvo_ab_b.attributes.name }} : {{ states.sensor.avanza_stock_volvo_ab_b.attributes.changePercent }}
+          </code>
+          <code>
+          {{ states.sensor.avanza_stock_tesla_inc.attributes.name }} : {{ states.sensor.avanza_stock_tesla_inc.attributes.changePercent }}
+          </code>
+          <code>
+          {{ states.sensor.avanza_stock_telia.attributes.name }} : {{ states.sensor.avanza_stock_telia.attributes.changePercent }}
+          </code>
+          <code>
+          {{ states.sensor.avanza_stock_swedbank_robur_transfear_70.attributes.name }} : {{ states.sensor.avanza_stock_swedbank_robur_transfear_70.attributes.changePercent }}
+          </code>'

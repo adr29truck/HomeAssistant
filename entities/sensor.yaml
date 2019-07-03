@@ -41,11 +41,6 @@
         lines: 
         - 22
         delay: 8
-#Worx landroid status sensor
-######################################
-  # - platform: worxlandroid
-  #   host: 192.168.1.123
-  #   pin: "XXXX"
   # Lastfm sensor
   - platform: lastfm
     api_key: !secret lastfm_api
@@ -53,9 +48,9 @@
       - adr29truck
 #Trafikverket data sensor
   - platform: trafikverket_weatherstation
-    name: Trafikverket Öxnäs
+    name: Trafikverket öxnäs
     api_key: !secret trafikverket_api
-    station: Öxnäs
+    station: öxnäs
     monitored_conditions:
         - air_temp
         - road_temp
@@ -79,28 +74,30 @@
         unit_of_measurement: '%'
         entity_id: sensor.worxlandroid_battery
         icon_template: >-
-            {% if states.sensor.worxlandroid_battery < 89 %}
-            mdi:battery-90
-            {% elif states.sensor.worxlandroid_battery < 79 %}
-            mdi:battery-80
-            {% elif states.sensor.worxlandroid_battery < 69 %}
-            mdi:battery-70
-            {% elif states.sensor.worxlandroid_battery < 59 %}
-            mdi:battery-60
-            {% elif states.sensor.worxlandroid_battery < 49 %}
-            mdi:battery-50
-            {% elif states.sensor.worxlandroid_battery < 39 %}
-            mdi:battery-40
-            {% elif states.sensor.worxlandroid_battery < 29 %}
-            mdi:battery-30
-            {% elif states.sensor.worxlandroid_battery < 19 %}
-            mdi:battery-20
-            {% elif states.sensor.worxlandroid_battery < 09 %}
-            mdi:battery-10
-            {% elif states.sensor.worxlandroid_battery < 0 %}
-            mdi:battery-outline
+            {% if states('sensor.worxlandroid_battery') > 95 %}
+              mdi:battery
+            {% elif states('sensor.worxlandroid_battery') > 89 %}
+              mdi:battery-90
+            {% elif states('sensor.worxlandroid_battery') > 79 %}
+              mdi:battery-80
+            {% elif states('sensor.worxlandroid_battery') > 69 %}
+              mdi:battery-70
+            {% elif states('sensor.worxlandroid_battery') > 59 %}
+              mdi:battery-60
+            {% elif states('sensor.worxlandroid_battery') > 49 %}
+              mdi:battery-50
+            {% elif states('sensor.worxlandroid_battery') > 39 %}
+              mdi:battery-40
+            {% elif states('sensor.worxlandroid_battery') > 29 %}
+              mdi:battery-30
+            {% elif states('sensor.worxlandroid_battery') > 19 %}
+              mdi:battery-20
+            {% elif states('sensor.worxlandroid_battery') > 09 %}
+              mdi:battery-10
+            {% elif states('sensor.worxlandroid_battery') > 0 %}
+              mdi:battery-outline
             {% else %}
-            mdi:offline-bolt
+              mdi:offline-bolt
             {% endif %}
       sun_state:
         friendly_name: "Sun State"
@@ -110,6 +107,74 @@
           {% else %}
             down
           {% endif %}
+      avanza_stock_percent_volvoab:
+        friendly_name: Volvo AB
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% if state_attr("sensor.avanza_stock_volvo_ab_b", "changePercent") > 0 %}
+            mdi:arrow-top-right
+          {% else %}
+            mdi:arrow-bottom-left
+          {% endif %}
+        value_template: >-
+          {{ state_attr("sensor.avanza_stock_volvo_ab_b", "changePercent") }}  
+      avanza_stock_percent_teslainc:
+        friendly_name: Tesla Inc
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% if state_attr("sensor.avanza_stock_tesla_inc", "changePercent") > 0 %}
+            mdi:arrow-top-right
+          {% else %}
+            mdi:arrow-bottom-left
+          {% endif %}
+        value_template: >-
+          {{ state_attr("sensor.avanza_stock_tesla_inc", "changePercent") }}  
+      avanza_stock_percent_nax:
+        friendly_name: Norwegian
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% if state_attr("sensor.avanza_stock_norwegian_air_shuttle", "changePercent") > 0 %}
+            mdi:arrow-top-right
+          {% else %}
+            mdi:arrow-bottom-left
+          {% endif %}
+        value_template: >-
+          {{ state_attr("sensor.avanza_stock_norwegian_air_shuttle", "changePercent") }}  
+      avanza_stock_percent_telia:
+        friendly_name: Telia
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% if state_attr("sensor.avanza_stock_telia", "changePercent") > 0 %}
+            mdi:arrow-top-right
+          {% else %}
+            mdi:arrow-bottom-left
+          {% endif %}  
+        value_template: >-
+          {{ state_attr("sensor.avanza_stock_telia", "changePercent") }}  
+      avanza_stock_percent_swedbank:
+        friendly_name: Swedbank Robur 70
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% if state_attr("sensor.avanza_stock_swedbank_robur_transfear_70", "changePercent") > 0 %}
+            mdi:arrow-top-right
+          {% else %}
+            mdi:arrow-bottom-left
+          {% endif %}  
+        value_template: >-
+          {{ state_attr("sensor.avanza_stock_swedbank_robur_transfear_70", "changePercent") }}  
+      avanza_stock_percent_sas:
+        friendly_name: SAS
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% if state_attr("sensor.avanza_stock_sas", "changePercent") > 0 %}
+            mdi:arrow-top-right
+          {% else %}
+            mdi:arrow-bottom-left
+          {% endif %}
+        value_template: >-
+          {{ state_attr("sensor.avanza_stock_sas", "changePercent") }} 
+
+    # Pollen sensor 
   - platform: pollenniva
     scan_interval: 4
     state_as_string: false
@@ -135,3 +200,57 @@
     county: "Västra Götalands län"
   - platform: krisinformation
     country: 'Sverige'
+    # Avanza Stock information Volvo AB (B)
+  - platform: avanza_stock
+    name: Avanza Stock Volvo AB (B)
+    stock: 5269
+    monitored_conditions: 
+    - lastPrice
+    - change
+    - changePercent
+    - name    
+    # Avanza Stock information Tesla Inc
+  - platform: avanza_stock
+    name: Avanza Stock Tesla Inc
+    stock: 238449
+    monitored_conditions: 
+    - lastPrice
+    - change
+    - changePercent
+    - name    
+    # Avanza Stock information Telia
+  - platform: avanza_stock
+    name: Avanza Stock Telia
+    stock: 5479
+    monitored_conditions: 
+    - lastPrice
+    - change
+    - changePercent
+    - name    
+    # Avanza Stock information Norwegian Air Shuttle
+  - platform: avanza_stock
+    name: Avanza Stock Norwegian Air Shuttle
+    stock: 52634
+    monitored_conditions: 
+    - lastPrice
+    - change
+    - changePercent
+    - name    
+    # Avanza Stock information SAS
+  - platform: avanza_stock
+    name: Avanza Stock SAS
+    stock: 5535
+    monitored_conditions: 
+    - lastPrice
+    - change
+    - changePercent
+    - name    
+    # Avanza Stock information Swedbank Robur Transfear 70
+  - platform: avanza_stock
+    name: Avanza Stock Swedbank Robur Transfear 70
+    stock: 2885
+    monitored_conditions: 
+    - lastPrice
+    - change
+    - changePercent
+    - name

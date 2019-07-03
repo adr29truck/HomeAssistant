@@ -8,6 +8,7 @@
 * pollenkoll - https://github.com/JohNan/home-assistant-pollenkoll
 * HACS - https://github.com/custom-components/hacs
   * Krisinformation
+  * Avanza Stock
 
 ## Custom lovelace cards
 * pollekoll-card - whttps://github.com/isabellaalstrom/pollenkoll-card
