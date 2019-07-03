@@ -4,7 +4,6 @@ theme: dark
 background: radial-gradient(crimson, skyblue)
 icon: mdi:speaker-multiple
 cards:
-    - type: custom:compact-custom-header
     - type: entities
       entities:
       - type: custom:mini-media-player

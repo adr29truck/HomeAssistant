@@ -5,7 +5,6 @@ background: radial-gradient(crimson, skyblue)
 icon: mdi:settings
 
 cards:
-  - type: custom:compact-custom-header
   - type: vertical-stack
     cards:
     - type: entities
