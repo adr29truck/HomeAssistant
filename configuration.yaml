@@ -67,6 +67,11 @@ binary_sensor: !include entities/binary_sensors.yaml
 hacs:
   token: !secret my_github_access_token
 
+browser_mod:
+  devices:
+    12b1ba75-c6263199:
+      name: Desktop
+
 influxdb:
   host: a0d7b954-influxdb
   port: 8086
