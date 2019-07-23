@@ -7,6 +7,7 @@
 ## Custom components
 * pollenkoll - https://github.com/JohNan/home-assistant-pollenkoll
 * HACS - https://github.com/custom-components/hacs
+  * Browser Mod
   * Krisinformation
   * Avanza Stock
 
@@ -27,7 +28,7 @@
 * ChromeCast Audio
 * JBL Link 10 (Google Assistant)
 
-## Energy
+## Power
 * TP-Link HS100
 
 ## Host machine

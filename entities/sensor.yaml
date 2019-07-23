@@ -117,7 +117,7 @@
             mdi:arrow-bottom-left
           {% endif %}
         value_template: >-
-          {{ state_attr("sensor.avanza_stock_volvo_ab_b", "changePercent") }}  
+          {{ state_attr("sensor.avanza_stock_volvo_ab_b", "changePercent") }}
       avanza_stock_percent_teslainc:
         friendly_name: Tesla Inc
         unit_of_measurement: '%'
@@ -128,7 +128,7 @@
             mdi:arrow-bottom-left
           {% endif %}
         value_template: >-
-          {{ state_attr("sensor.avanza_stock_tesla_inc", "changePercent") }}  
+          {{ state_attr("sensor.avanza_stock_tesla_inc", "changePercent") }}
       avanza_stock_percent_nax:
         friendly_name: Norwegian
         unit_of_measurement: '%'
@@ -139,7 +139,7 @@
             mdi:arrow-bottom-left
           {% endif %}
         value_template: >-
-          {{ state_attr("sensor.avanza_stock_norwegian_air_shuttle", "changePercent") }}  
+          {{ state_attr("sensor.avanza_stock_norwegian_air_shuttle", "changePercent") }}
       avanza_stock_percent_telia:
         friendly_name: Telia
         unit_of_measurement: '%'
@@ -148,9 +148,9 @@
             mdi:arrow-top-right
           {% else %}
             mdi:arrow-bottom-left
-          {% endif %}  
+          {% endif %}
         value_template: >-
-          {{ state_attr("sensor.avanza_stock_telia", "changePercent") }}  
+          {{ state_attr("sensor.avanza_stock_telia", "changePercent") }}
       avanza_stock_percent_swedbank:
         friendly_name: Swedbank Robur 70
         unit_of_measurement: '%'
@@ -159,9 +159,9 @@
             mdi:arrow-top-right
           {% else %}
             mdi:arrow-bottom-left
-          {% endif %}  
+          {% endif %}
         value_template: >-
-          {{ state_attr("sensor.avanza_stock_swedbank_robur_transfear_70", "changePercent") }}  
+          {{ state_attr("sensor.avanza_stock_swedbank_robur_transfear_70", "changePercent") }}
       avanza_stock_percent_sas:
         friendly_name: SAS
         unit_of_measurement: '%'
@@ -172,9 +172,9 @@
             mdi:arrow-bottom-left
           {% endif %}
         value_template: >-
-          {{ state_attr("sensor.avanza_stock_sas", "changePercent") }} 
+          {{ state_attr("sensor.avanza_stock_sas", "changePercent") }}
 
-    # Pollen sensor 
+    # Pollen sensor
   - platform: pollenniva
     scan_interval: 4
     state_as_string: false
@@ -204,52 +204,52 @@
   - platform: avanza_stock
     name: Avanza Stock Volvo AB (B)
     stock: 5269
-    monitored_conditions: 
+    monitored_conditions:
     - lastPrice
     - change
     - changePercent
-    - name    
+    - name
     # Avanza Stock information Tesla Inc
   - platform: avanza_stock
     name: Avanza Stock Tesla Inc
     stock: 238449
-    monitored_conditions: 
+    monitored_conditions:
     - lastPrice
     - change
     - changePercent
-    - name    
+    - name
     # Avanza Stock information Telia
   - platform: avanza_stock
     name: Avanza Stock Telia
     stock: 5479
-    monitored_conditions: 
+    monitored_conditions:
     - lastPrice
     - change
     - changePercent
-    - name    
+    - name
     # Avanza Stock information Norwegian Air Shuttle
   - platform: avanza_stock
     name: Avanza Stock Norwegian Air Shuttle
     stock: 52634
-    monitored_conditions: 
+    monitored_conditions:
     - lastPrice
     - change
     - changePercent
-    - name    
+    - name
     # Avanza Stock information SAS
   - platform: avanza_stock
     name: Avanza Stock SAS
     stock: 5535
-    monitored_conditions: 
+    monitored_conditions:
     - lastPrice
     - change
     - changePercent
-    - name    
+    - name
     # Avanza Stock information Swedbank Robur Transfear 70
   - platform: avanza_stock
     name: Avanza Stock Swedbank Robur Transfear 70
     stock: 2885
-    monitored_conditions: 
+    monitored_conditions:
     - lastPrice
     - change
     - changePercent

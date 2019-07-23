@@ -10,6 +10,12 @@
       data_template:
         message: >
           {{states.sensor.krisinformation_goREDACTED.attributes.messages[0].Headline}} - {{states.sensor.krisinformation_goREDACTED.attributes.messages[0].Message}} {{states.sensor.krisinformation_goREDACTED.attributes.messages[0].Web}}
+    - service: browser_mod.command
+      data:
+        command: navigate
+        navigation_path: "/lovelace/settings"
+        deviceID:
+          - Desktop
 
 - alias: 'Krisinformation Alert 2'
   id: 'alert2'
@@ -23,3 +29,9 @@
       data_template:
         message: >
           {{states.sensor.krisinformation_sverige.attributes.messages[0].Headline}} - {{states.sensor.krisinformation_sverige.attributes.messages[0].Message}} {{states.sensor.krisinformation_sverige.attributes.messages[0].Web}}
+    - service: browser_mod.command
+      data:
+        command: navigate
+        navigation_path: "/lovelace/settings"
+        deviceID:
+          - Desktop

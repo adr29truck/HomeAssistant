@@ -30,3 +30,12 @@ cards:
       head: sensor.avanza_stock_percent_swedbank
       entities:
         - sensor.avanza_stock_swedbank_robur_transfear_70
+  - type: "custom:atomic-calendar"
+    title: "Calendar"
+    entities:
+    - entity: calendar.adrianREDACTED_gmail_com
+      color: yellow
+    - entity: calendar.adrian_REDACTED_REDACTED
+    - entity: calendar.kalender_svart_grupp
+    - entity: calendar.helgdagar_i_sverige
+      color: red
